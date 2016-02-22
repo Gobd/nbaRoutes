@@ -1,4 +1,4 @@
-angular.module('nbaRoutes').service('teamService', function ($http) {
+angular.module('nbaRoutes').service('teamService', function ($http, $q) {
 
   this.addNewGame = function(gameObj) {
     var url = 'https://api.parse.com/1/classes/' + gameObj.homeTeam;
@@ -7,32 +7,34 @@ angular.module('nbaRoutes').service('teamService', function ($http) {
       } else {
         gameObj.won = false;
       }
-      return  $http({
+      return $http({
         method: "POST",
         url: url,
         data: gameObj,
         }).then(function(response) {
+          console.log(response);
           return response;
       });
   };
 
   this.getTeamData = function(team){
     var url = 'https://api.parse.com/1/classes/' + team;
-      return  $http({
+      var deferred = $q.defer();
+       $http({
         method: "GET",
-        url: url,
-        data: gameObj,
+        url: url
         }).then(function(response) {
           var results = response.data.results;
           var wins = 0;
           var losses = 0;
-          results.forEach(function(obj){
-                  if (obj.won) {won ++;} else {losses ++;}
-          });
-          results.win = wins;
+            results.forEach(function(obj){
+                  if (obj.won) {wins ++;} else {losses ++;}
+            });
+          results.wins = wins;
           results.losses = losses;
-          return results;
+          deferred.resolve(results);
       });
+      return deferred.promise;
   };
 
 });
