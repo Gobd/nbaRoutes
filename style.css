@@ -5,7 +5,20 @@ html, body {
   height: 100%;
   font-family: 'Lato', sans-serif;
 }
+.first {
+  width:500px;
+  float:left;
+}
 
+.second {
+  width:500px;
+  float:left;
+}
+
+.third {
+  width:500px;
+  float:left;
+}
 .main-container {
   width: 80%;
   margin: 0px auto;

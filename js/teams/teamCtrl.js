@@ -44,7 +44,7 @@ angular.module('nbaRoutes').controller('teamCtrl', function ($scope, $stateParam
               return response;
           });
       }
-    })
+    });
 
   };
 

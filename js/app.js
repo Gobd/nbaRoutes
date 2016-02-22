@@ -8,7 +8,36 @@ angular.module('nbaRoutes', ['ui.router'])
       .state('home', {
         url: '/',
         templateUrl: 'js/home/homeTmpl.html',
-        controller: 'homeCtrl'
+        controller: 'homeCtrl',
+        views: {
+          utahjazz: {
+            templateUrl: 'js/teams/teamTmpl.html',
+            controller: 'teamCtrl',
+            resolve: {teamData:
+              function(teamService){
+                return teamService.getTeamData('utahjazz');
+              }
+            }
+          },
+          losangeleslakers: {
+            templateUrl: 'js/teams/teamTmpl.html',
+            controller: 'teamCtrl',
+            resolve: {teamData:
+              function(teamService){
+                return teamService.getTeamData('losangeleslakers');
+              }
+            }
+          },
+          miamiheat: {
+            templateUrl: 'js/teams/teamTmpl.html',
+            controller: 'teamCtrl',
+            resolve: {teamData:
+              function(teamService){
+                return teamService.getTeamData('miamiheat');
+              }
+            }
+          }
+        }
       })
       .state('teams', {
         url: '/teams/:team',
