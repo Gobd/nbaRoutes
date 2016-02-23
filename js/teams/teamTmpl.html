@@ -22,14 +22,14 @@
     </form>
 
     <div class="team-data">
-        <div class="game" ng-repeat="game in teamData" ng-class="{'even' : $index % 2 === 0}">
+        <div class="game" ng-repeat="game in teamData | orderBy: '-createdAt'" ng-class="{'even' : $index % 2 === 0}">
             <!-- Each game should end up looking something like this:
         Date: May 29, 1997
         Utah Jazz - 103
         Houston Rockets - 100
         objectId
       -->
-            Date: {{game.createdAt| date:'short'}}
+            Date: {{game.createdAt | date:'short'}}
             <br /> {{game.homeTeam}} - {{game.homeTeamScore}}
             <br /> {{game.opponent}} - {{game.opponentScore}}
             </br />
